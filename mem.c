@@ -15,7 +15,7 @@ typedef struct {
 
 const char *FILE_MEMINFO = "/proc/meminfo";
 const char *REGEX_MEM_TOTAL = "^MemTotal";
-const char *REGEX_MEM_AVAILABLE = "^MemFree";
+const char *REGEX_MEM_AVAILABLE = "^MemAvailable";
 const char *REGEX_SWAP_TOTAL = "^SwapTotal";
 const char *REGEX_SWAP_AVAILABLE = "^SwapFree";
 const int THRESHOLD_RED = 75;
