@@ -102,6 +102,7 @@ void print_batteryinfo(Batteryinfo *batteryinfo)
     double life = 0;
     double now = 0;
     char state[2];
+    state[1] = '\0';
 
     if (batteryinfo->full > 0 && batteryinfo->design > 0)
         life = ((double)batteryinfo->full / batteryinfo->design) * 100.0;

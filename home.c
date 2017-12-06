@@ -41,15 +41,19 @@ void printhomeinfo(Homeinfo *homeinfo)
     iteration++;
 
     char unit[3];
+    unit[2] = '\0';
     switch (iteration) {
     case 0:
-        strcpy(unit, "KB");
+        strncpy(unit, "KB", 2);
         break;
     case 1:
-        strcpy(unit, "MB");
+        strncpy(unit, "MB", 2);
         break;
     case 2:
-        strcpy(unit, "GB");
+        strncpy(unit, "GB", 2);
+        break;
+    default:
+        unit[0]= '\0';
         break;
     }
 

@@ -15,6 +15,7 @@ void set_color(char *color, double value, double tred, double tyellow)
         strncpy(color, COLOR_YELLOW, COLOR_LENGTH);
     else
         strncpy(color, COLOR_GREEN, COLOR_LENGTH);
+    color[COLOR_LENGTH - 1] = '\0';
 }
 
 void set_unit(char *unit, double *value)
@@ -38,5 +39,8 @@ void set_unit(char *unit, double *value)
     case 2:
         strncpy(unit, "GB", 2);
         break;
+    default:
+        unit[0] = '\0';
     }
+    unit[2] = '\0';
 }

@@ -72,10 +72,11 @@ int main()
         printf("MAC\n");
 
         char color[8];
+        color[7] = '\0';
         if (strcmp(cmac, pmac) == 0)
-            strncpy(color, "#FF0000", 8);
+            strncpy(color, "#FF0000", 7);
         else
-            strncpy(color, "#00FF00", 8);
+            strncpy(color, "#00FF00", 7);
         printf("%s\n", color);
 
         if (pmac != NULL)

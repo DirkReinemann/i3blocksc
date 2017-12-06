@@ -28,11 +28,11 @@ char *read_ip(const char *iface)
         strncpy(ifr.ifr_name, iface, IFNAMSIZ - 1);
         ioctl(fd, SIOCGIFADDR, &ifr);
         close(fd);
-        printf("%i\n", ifr.ifr_ifindex);
         char *result = inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr);
         int length = strlen(result);
-        ip = (char *)malloc(sizeof(char) * length);
+        ip = (char *)malloc(sizeof(char) * (length + 1));
         strncpy(ip, result, length);
+        ip[length] = '\0';
     }
     return ip;
 }
@@ -159,10 +159,11 @@ int main()
         }
 
         char color[8];
+        color[7] = '\0';
         if (operstate == 0)
-            strncpy(color, "#FF0000", 8);
+            strncpy(color, "#FF0000", 7);
         else
-            strncpy(color, "#00FF00", 8);
+            strncpy(color, "#00FF00", 7);
         printf("%s\n", color);
         if (ip != NULL)
             free(ip);

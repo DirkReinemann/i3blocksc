@@ -17,39 +17,39 @@ millis() {
 
 timeall()
 {
-    T=0
+    t=0
+    shopt -s nullglob
+    for file in *[sh,o]; do
+        t1=$(millis)
+        ./"$file" > /dev/null 2>&1
+        exitcode=$?
+        t2=$(millis)
+        ta=$(echo "$t1 $t2" | awk '{ time=($2-$1)/1000; printf "%2.3f", time }')
 
-    for FILE in $(ls -1 | grep -E '.*\.(sh|o)'); do
-        T1=$(millis)
-        RES=$(exec ./$FILE > /dev/null 2>&1)
-        EXITCODE=$?
-        T2=$(millis)
-        TA=$(echo "$T1 $T2" | awk '{ time=($2-$1)/1000; printf "%2.3f", time }')
-
-        if [ $EXITCODE -eq 0 ]; then
-            printf "\e[39m%-40s" "$FILE"
+        if [ $exitcode -eq 0 ]; then
+            printf "\e[39m%-40s" "$file"
         else
-            printf "\e[39m%-40s" "$FILE"
+            printf "\e[39m%-40s" "$file"
         fi
 
-        if [ $(($T2-$T1)) -lt 1000 ]; then
-            printf "\e[32m%-20s\n" "$TA"
+        if [ $((t2-t1)) -lt 1000 ]; then
+            printf "\e[32m%-20s\n" "$ta"
         else
-            printf "\e[31m%-20s\n" "$TA"
+            printf "\e[31m%-20s\n" "$ta"
         fi
 
-        T=$(echo "$T1 $T2 $T" | awk '{ time=(($2-$1)/1000)+$3; printf "%2.4f", time }')
+        t=$(echo "$t1 $t2 $t" | awk '{ time=(($2-$1)/1000)+$3; printf "%2.4f", time }')
     done
 
-    printf "\e[39m\n%-40s%-20s\n" "" "$T"
+    printf "\e[39m\n%-40s%-20s\n" "" "$t"
 }
 
 if [ $# == 0 ]; then
     usage
 fi
 
-while getopts "t" OPT; do
-    case $OPT in
+while getopts "t" opt; do
+    case $opt in
     t)
         timeall
         ;;
