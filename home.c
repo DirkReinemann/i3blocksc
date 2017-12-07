@@ -27,35 +27,9 @@ void readhomeinfo(Homeinfo *homeinfo, char *home)
 
 void printhomeinfo(Homeinfo *homeinfo)
 {
-    int iteration = 0;
     double value = homeinfo->available;
-    double next = value / 1024;
-
-    while (next > 1) {
-        value = next;
-        next = value / 1024;
-        iteration++;
-    }
-    value *= homeinfo->frsize;
-    value /= 1024;
-    iteration++;
-
     char unit[3];
-    unit[2] = '\0';
-    switch (iteration) {
-    case 0:
-        strncpy(unit, "KB", 2);
-        break;
-    case 1:
-        strncpy(unit, "MB", 2);
-        break;
-    case 2:
-        strncpy(unit, "GB", 2);
-        break;
-    default:
-        unit[0]= '\0';
-        break;
-    }
+    set_unit(unit, &value);
 
     char color[9];
     double percent = (double)100.0 - (100.0 * homeinfo->available / homeinfo->total);
