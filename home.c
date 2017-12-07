@@ -30,6 +30,7 @@ void printhomeinfo(Homeinfo *homeinfo)
     double value = homeinfo->available;
     char unit[3];
     set_unit(unit, &value);
+    value *= homeinfo->frsize / 1024;
 
     char color[9];
     double percent = (double)100.0 - (100.0 * homeinfo->available / homeinfo->total);
