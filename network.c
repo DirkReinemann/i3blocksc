@@ -118,7 +118,7 @@ int read_operstate(const char *iface)
 
 int get_int_length(const int value)
 {
-    return value == 0 ? 1 : ((int)(log10(fabs(value)) + 1) + (value < 0 ? 1 : 0));
+    return value == 0 ? 1 : ((int)(log10(value) + 1) + (value < 0 ? 1 : 0));
 }
 
 void print_result(const char *result, const int operstate)

@@ -5,7 +5,7 @@
 
 #include "block.h"
 
-typedef struct {
+typedef struct Homeinfo {
     long total;
     long available;
     long frsize;
