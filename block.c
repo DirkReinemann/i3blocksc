@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 
 #include "block.h"
 
@@ -31,13 +32,13 @@ void set_unit(char *unit, double *value)
 
     switch (iteration) {
     case 0:
-        strncpy(unit, "KB", 2);
+        strncpy(unit, "KB", 3);
         break;
     case 1:
-        strncpy(unit, "MB", 2);
+        strncpy(unit, "MB", 3);
         break;
     case 2:
-        strncpy(unit, "GB", 2);
+        strncpy(unit, "GB", 3);
         break;
     default:
         unit[0] = '\0';
