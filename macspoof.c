@@ -22,7 +22,7 @@ char *read_current_mac(const char *iface)
 
     if (fd != -1) {
         ifr.ifr_addr.sa_family = AF_INET;
-        strncpy(ifr.ifr_name, iface, IFNAMSIZ - 1);
+        strncpy(ifr.ifr_name, iface, IFNAMSIZ);
         ioctl(fd, SIOCGIFHWADDR, &ifr);
         close(fd);
         unsigned char *result = (unsigned char *)ifr.ifr_hwaddr.sa_data;
@@ -49,7 +49,7 @@ char *read_permanent_mac(const char *iface)
         while (token && i < 3) {
             if (i == 2) {
                 mac = (char *)malloc(sizeof(char) * 18);
-                strncpy(mac, token, 17);
+                strncpy(mac, token, 18);
                 mac[17] = '\0';
             }
             token = strtok(NULL, " ");
@@ -74,9 +74,9 @@ int main()
         char color[8];
         color[7] = '\0';
         if (strcmp(cmac, pmac) == 0)
-            strncpy(color, "#FF0000", 7);
+            strncpy(color, "#FF0000", 8);
         else
-            strncpy(color, "#00FF00", 7);
+            strncpy(color, "#00FF00", 8);
         printf("%s\n", color);
 
         if (pmac != NULL)

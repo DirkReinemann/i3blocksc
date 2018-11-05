@@ -113,17 +113,17 @@ void print_batteryinfo(Batteryinfo *batteryinfo)
     if (batteryinfo->power > 0 && batteryinfo->current > 0 && batteryinfo->power > 0) {
         if (batteryinfo->state == CHARGING) {
             loading = (double)(batteryinfo->full - batteryinfo->current) / batteryinfo->power;
-            strncpy(state, "+", 1);
+            strncpy(state, "+", 2);
         } else {
             if (batteryinfo->state == DISCHARGING)
-                strncpy(state, "-", 1);
+                strncpy(state, "-", 2);
             else
-                strncpy(state, " ", 1);
+                strncpy(state, " ", 2);
             loading = (double)batteryinfo->current / batteryinfo->power;
         }
     } else {
         loading = 0;
-        strncpy(state, " ", 1);
+        strncpy(state, " ", 2);
     }
 
     int hours = loading;
