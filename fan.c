@@ -60,7 +60,7 @@ void print_faninfo(Faninfo *faninfo)
 {
     char color[9];
 
-    set_color(color, faninfo->speed, THRESHOLD_RED, THRESHOLD_YELLOW);
+    set_color(color, faninfo->level, THRESHOLD_RED, THRESHOLD_YELLOW);
     printf("%i %i\n", faninfo->level, faninfo->speed);
     printf("%i %i\n", faninfo->level, faninfo->speed);
     printf("%s\n", color);

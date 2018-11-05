@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-g3 -std=c11 -Wall -Wextra -Werror -lm -D_GNU_SOURCE
 OBJECTS=$(patsubst %.c,%.o,$(filter-out block.c, $(wildcard *.c)))
-SCRIPTS=$(wildcard *.sh)
+SCRIPTS=$(filter-out helper.sh, $(wildcard *.sh))
 INSTALLDIR=$(HOME)/.config/i3/blocks
 LIBS=block.c
 
