@@ -16,7 +16,7 @@ const char *WLAN_CONNECTIONS_FILE = "/proc/net/wireless";
 
 char *read_current_mac(const char *iface)
 {
-    char *mac = NULL;
+    char *mac = malloc(0);
     struct ifreq ifr;
     int fd = socket(AF_INET, SOCK_DGRAM, 0);
 
@@ -26,19 +26,20 @@ char *read_current_mac(const char *iface)
         ioctl(fd, SIOCGIFHWADDR, &ifr);
         close(fd);
         unsigned char *result = (unsigned char *)ifr.ifr_hwaddr.sa_data;
-        mac = (char *)malloc(sizeof(char) * 18);
+        mac = (char *)realloc(mac, sizeof(char) * 18);
         snprintf(mac, 18, "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x", result[0], result[1], result[2], result[3], result[4], result[5]);
+        mac[18] = '\0';
     }
     return mac;
 }
 
 char *read_permanent_mac(const char *iface)
 {
-    char *mac = NULL;
-    int length = strlen(iface) + 12;
+    char *mac = calloc(0, 0);
+    int length = strlen(iface) + 24;
     char command[length];
 
-    snprintf(command, length, "ethtool -P %s", iface);
+    snprintf(command, length, "ethtool -P %s 2>/dev/null", iface);
     FILE *file = popen(command, "r");
     if (file != NULL) {
         char *line = NULL;
@@ -48,14 +49,14 @@ char *read_permanent_mac(const char *iface)
         int i = 0;
         while (token && i < 3) {
             if (i == 2) {
-                mac = (char *)malloc(sizeof(char) * 18);
+                mac = (char *)realloc(mac, sizeof(char) * 18);
                 strncpy(mac, token, 18);
                 mac[17] = '\0';
             }
             token = strtok(NULL, " ");
             i++;
         }
-        fclose(file);
+        pclose(file);
     }
     return mac;
 }
@@ -73,16 +74,14 @@ int main()
 
         char color[8];
         color[7] = '\0';
-        if (strcmp(cmac, pmac) == 0)
+        if (strcmp(cmac, pmac) == 0 || strlen(cmac) == 0 || strlen(pmac) == 0)
             strncpy(color, "#FF0000", 8);
         else
             strncpy(color, "#00FF00", 8);
         printf("%s\n", color);
 
-        if (pmac != NULL)
-            free(pmac);
-        if (cmac != NULL)
-            free(cmac);
+        free(pmac);
+        free(cmac);
     }
     return 0;
 }
