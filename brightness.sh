@@ -11,4 +11,4 @@ PERCENT=$(brightnesscontrol -s)
 
 echo "$PERCENT"
 echo "$PERCENT"
-echo ""
+echo "#FFFFFF"

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+[[ -d ${DIR} ]] && . ${DIR}/block.sh
+
 state()
 {
     systemctl status bluetooth.service > /dev/null 2>&1
@@ -27,8 +31,8 @@ echo "BLUE"
 echo "BLUE"
 
 if [ $(state) -eq 0 ]; then
-    echo "#00FF00"
+    echo "${COLOR_GREEN}"
 else
-    echo "#FF0000"
+    echo "${COLOR_RED}"
 fi
 

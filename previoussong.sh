@@ -13,5 +13,4 @@ esac
 
 echo "PREV"
 echo "PREV"
-echo ""
-
+echo "#FFFFFF"

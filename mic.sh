@@ -1,5 +1,9 @@
 #!/bin/sh
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+[[ -d ${DIR} ]] && . ${DIR}/block.sh
+
 case $BLOCK_BUTTON in
     1) amixer sset Capture toggle > /dev/null 2>&1 ;; # left click
     2) amixer sset Capture toggle > /dev/null 2>&1 ;; # middle click
@@ -13,7 +17,7 @@ echo "MIC"
 echo "MIC"
 
 if [ $MIC -eq 1 ]; then
-    echo "#00FF00"
+    echo "${COLOR_GREEN}"
 else
-    echo "#FF0000"
+    echo "${COLOR_RED}"
 fi

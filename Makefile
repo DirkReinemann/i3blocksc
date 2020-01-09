@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-g3 -std=c11 -Wall -Wextra -Werror -lm -D_GNU_SOURCE
+CFLAGS=-g3 -std=c11 -Wall -Wextra -Werror -lm -D_GNU_SOURCE `pkg-config --cflags --libs libcurl`
 OBJECTS=$(patsubst %.c,%.o,$(filter-out block.c, $(wildcard *.c)))
 SCRIPTS=$(filter-out helper.sh, $(wildcard *.sh))
 INSTALLDIR=$(HOME)/.config/i3/blocks

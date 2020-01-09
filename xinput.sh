@@ -1,5 +1,9 @@
 #!/bin/sh
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+[[ -d ${DIR} ]] && . ${DIR}/block.sh
+
 ID=$(xinput | grep $BLOCK_INSTANCE | grep -o 'id=[0-9]*' | grep -o '[0-9]*')
 
 state()
@@ -23,11 +27,11 @@ case $BLOCK_BUTTON in
     3) toggle ;; # right click
 esac
 
-printf "$BLOCK_NAME\n"
-printf "$BLOCK_NAME\n"
+echo "${BLOCK_NAME}"
+echo "${BLOCK_NAME}"
 
 if [ $(state) -eq 1 ]; then
-    printf "#00FF00\n"
+    echo "${COLOR_GREEN}"
 else
-    printf "#FF0000\n"
+    echo "${COLOR_RED}"
 fi

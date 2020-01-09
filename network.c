@@ -161,9 +161,9 @@ int main()
         char color[8];
         color[7] = '\0';
         if (operstate == 0)
-            strncpy(color, "#FF0000", 8);
+            strncpy(color, "#F0544C", 8);
         else
-            strncpy(color, "#00FF00", 8);
+            strncpy(color, "#4CF054", 8);
         printf("%s\n", color);
         if (ip != NULL)
             free(ip);

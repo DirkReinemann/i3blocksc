@@ -40,7 +40,6 @@ void read_tempinfo(Tempinfo *tempinfo)
                         getline(&line, &size, file);
                         temp += atol(line);
                         count++;
-                        free(line);
                         fclose(file);
                     }
                 }

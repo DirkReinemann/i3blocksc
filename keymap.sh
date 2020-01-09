@@ -1,15 +1,15 @@
 #!/bin/sh
 
-KEYMAP=$(setxkbmap -query | grep layout | awk -F':' '{ gsub(/^[ \t]*/, "", $2); print $2 }')
+KEYMAP="$(setxkbmap -query | grep layout | awk -F':' '{ gsub(/^[ \t]*/, "", $2); print $2 }')"
 
 GERMAN="de"
 ENGLISH="us"
 
 toggle()
 {
-    if [ "$KEYMAP" == "$GERMAN" ]; then
+    if [ "$KEYMAP" = "$GERMAN" ]; then
         setxkbmap $ENGLISH
-    elif [ "$KEYMAP" == "$ENGLISH" ]; then
+    elif [ "$KEYMAP" = "$ENGLISH" ]; then
         setxkbmap $GERMAN
     fi
 }
@@ -24,12 +24,12 @@ KEYMAP=$(setxkbmap -query | grep layout | awk -F':' '{ gsub(/^[ \t]*/, "", $2); 
 
 LAYOUT="??"
 
-if [ "$KEYMAP" == "$GERMAN" ]; then
+if [ "$KEYMAP" = "$GERMAN" ]; then
     LAYOUT="DE"
-elif [ "$KEYMAP" == "$ENGLISH" ]; then
+elif [ "$KEYMAP" = "$ENGLISH" ]; then
     LAYOUT="US"
 fi
 
 echo "$LAYOUT"
 echo "$LAYOUT"
-echo ""
+echo "#FFFFFF"

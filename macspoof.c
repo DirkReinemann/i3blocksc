@@ -10,6 +10,8 @@
 #include <net/if.h>
 #include <arpa/inet.h>
 
+#include "block.h"
+
 const char *NETWORK_INTERFACE_DIR = "/sys/class/net";
 const char *NETWORK_INTERFACE_MACFILE = "address";
 const char *WLAN_CONNECTIONS_FILE = "/proc/net/wireless";
@@ -75,9 +77,9 @@ int main()
         char color[8];
         color[7] = '\0';
         if (strcmp(cmac, pmac) == 0 || strlen(cmac) == 0 || strlen(pmac) == 0)
-            strncpy(color, "#FF0000", 8);
+            strncpy(color, COLOR_RED, COLOR_LENGTH);
         else
-            strncpy(color, "#00FF00", 8);
+            strncpy(color, COLOR_RED, COLOR_LENGTH);
         printf("%s\n", color);
 
         free(pmac);
