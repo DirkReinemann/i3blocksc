@@ -1,5 +1,9 @@
 #!/bin/sh
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+[[ -d ${DIR} ]] && . ${DIR}/block.sh
+
 KEYMAP="$(setxkbmap -query | grep layout | awk -F':' '{ gsub(/^[ \t]*/, "", $2); print $2 }')"
 
 GERMAN="de"
@@ -32,4 +36,4 @@ fi
 
 echo "$LAYOUT"
 echo "$LAYOUT"
-echo "#FFFFFF"
+echo "${COLOR_WHITE}"

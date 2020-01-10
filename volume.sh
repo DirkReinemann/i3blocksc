@@ -25,5 +25,5 @@ echo "$VOL"
 if [ "$VOL" == "MUTE" ]; then
     echo "${COLOR_RED}"
 else
-    echo "#FFFFFF"
+    echo "${COLOR_WHITE}"
 fi

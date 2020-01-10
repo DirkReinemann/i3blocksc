@@ -1,5 +1,9 @@
 #!/bin/sh
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+[[ -d ${DIR} ]] && . ${DIR}/block.sh
+
 case $BLOCK_BUTTON in
     1) brightnesscontrol -d ;; # left click, decrease
     3) brightnesscontrol -i ;; # right click, increase
@@ -11,4 +15,4 @@ PERCENT=$(brightnesscontrol -s)
 
 echo "$PERCENT"
 echo "$PERCENT"
-echo "#FFFFFF"
+echo "${COLOR_WHITE}"

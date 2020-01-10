@@ -1,5 +1,9 @@
 #!/bin/bash
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+[[ -d ${DIR} ]] && . ${DIR}/block.sh
+
 action()
 {
     playerctl next
@@ -13,4 +17,4 @@ esac
 
 echo "NEXT"
 echo "NEXT"
-echo "#FFFFFF"
+echo "${COLOR_WHITE}"

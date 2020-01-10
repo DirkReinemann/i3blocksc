@@ -3,9 +3,10 @@
 
 #include "block.h"
 
-const char *COLOR_RED = "#F0544C";
+const char *COLOR_RED = "#D64937";
 const char *COLOR_GREEN = "#4CF054";
 const char *COLOR_YELLOW = "#F0A64C";
+const char *COLOR_WHITE = "#F9F9F9";
 const int COLOR_LENGTH = 8;
 
 void set_color(char *color, double value, double tred, double tyellow)
